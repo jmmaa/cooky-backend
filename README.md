@@ -1,21 +1,21 @@
 # Cooky Backend
 
-
 ## Setup
 
-This project is using python version `3.11.4`
+This project is using python version `3.11.4`.
+
+start the virtual environment
+
 ```
-> python --version
-Python 3.11.4
+python -m venv .venv
 ```
-First start the virtual environment
-```
-> python -m venv .venv
-```
+
 Then install required packages
+
 ```
-> pip install -r requirements.txt
+pip install -r requirements.txt
 ```
+
 Create a `.env` file to configure the database credentials
 
 ```
@@ -29,18 +29,16 @@ PASSWORD=<your password>
 PORT=<your port number>
 ```
 
-and finally, start the server
+start the server
 
 ```
 > python manage.py runserver
 ```
 
-
-
-
 # TODO
 
 ### As an admin
+
 <input type="checkbox" disabled checked  /> I want to be able to view the admin dashboard <br>
 <input type="checkbox" disabled  /> I want to be able to view the list of all recipes <br>
 <input type="checkbox" disabled  /> I want to be able to add a recipe <br>
