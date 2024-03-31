@@ -40,14 +40,14 @@ from .serializers import UserSerializer
 #     return Response(data, status=status.HTTP_200_OK)
 
 
-# @api_view(["GET"])
-# @permission_classes([IsAuthenticated, IsAdminUser])
-# def get_user(request):
-#     id = request.GET["id"]
-#     user = User.objects.get(pk=id)
-#     data = UserSerializer(user).data
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def get_user(request):
+    
 
-#     return Response(data, status=status.HTTP_200_OK)
+    data = UserSerializer(request.user).data
+
+    return Response(data, status=status.HTTP_200_OK)
 
 
 # @api_view(["PUT"])

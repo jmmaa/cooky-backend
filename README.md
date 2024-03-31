@@ -14,7 +14,7 @@ python -m venv .venv
 install the required packages
 
 ```
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 create a `.env` file to configure the database credentials
