@@ -14,30 +14,30 @@ from rest_framework.authtoken.models import Token
 from .serializers import UserSerializer
 
 
-# @api_view(["POST"])
-# @permission_classes([IsAuthenticated, IsAdminUser])
-# def create_user(request):
-#     serializer = UserSerializer(data=request.data)
+@api_view(["POST"])
+@permission_classes([IsAuthenticated, IsAdminUser])
+def create_user(request):
+    serializer = UserSerializer(data=request.data)
 
-#     if serializer.is_valid():
-#         serializer.save()
+    if serializer.is_valid():
+        serializer.save()
 
-#         return Response(status=status.HTTP_201_CREATED)
+        return Response(status=status.HTTP_201_CREATED)
 
-#     else:
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# @api_view(["GET"])
-# @permission_classes([IsAuthenticated])
-# def get_users(request):
-#     users = User.objects.all()  # for now it gets all users
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def get_users(request):
+    users = User.objects.all()  # for now it gets all users
 
-#     json = serializers.serialize("json", users)
-#     stream = io.BytesIO(json.encode())
-#     data = JSONParser().parse(stream)
+    json = serializers.serialize("json", users)
+    stream = io.BytesIO(json.encode())
+    data = JSONParser().parse(stream)
 
-#     return Response(data, status=status.HTTP_200_OK)
+    return Response(data, status=status.HTTP_200_OK)
 
 
 @api_view(["GET"])
@@ -50,38 +50,38 @@ def get_user(request):
     return Response(data, status=status.HTTP_200_OK)
 
 
-# @api_view(["PUT"])
-# @permission_classes([IsAuthenticated])
-# def update_user(request):
-#     if (id := request.GET.get("id")) is not None:
-#         User.objects.filter(pk=id).update(**request.data)
+@api_view(["PUT"])
+@permission_classes([IsAuthenticated])
+def update_user(request):
+    if (id := request.GET.get("id")) is not None:
+        User.objects.filter(pk=id).update(**request.data)
 
-#         user = User.objects.get(pk=id)
-#         user.set_password(user.password)
-#         user.save()
+        user = User.objects.get(pk=id)
+        user.set_password(user.password)
+        user.save()
 
-#         return Response(status=status.HTTP_202_ACCEPTED)
+        return Response(status=status.HTTP_202_ACCEPTED)
 
-#     else:
-#         return Response(
-#             {"detail": "required id field"}, status=status.HTTP_400_BAD_REQUEST
-#         )
+    else:
+        return Response(
+            {"detail": "required id field"}, status=status.HTTP_400_BAD_REQUEST
+        )
 
 
-# @api_view(["DELETE"])
-# @permission_classes([IsAuthenticated])
-# def delete_user(request):
-#     data = request.GET
+@api_view(["DELETE"])
+@permission_classes([IsAuthenticated])
+def delete_user(request):
+    data = request.GET
 
-#     if (id := data.get("id")) is not None:
-#         User.objects.filter(pk=id).delete()
-#         return Response(status=status.HTTP_202_ACCEPTED)
+    if (id := data.get("id")) is not None:
+        User.objects.filter(pk=id).delete()
+        return Response(status=status.HTTP_202_ACCEPTED)
 
-#     else:
-#         return Response(
-#             {"detail": "required id field"},
-#             status=status.HTTP_400_BAD_REQUEST,
-#         )
+    else:
+        return Response(
+            {"detail": "required id field"},
+            status=status.HTTP_400_BAD_REQUEST,
+        )
 
 
 # auth
